@@ -28,6 +28,7 @@ if (cluster.isMaster) {
         conn.end();
     }
     http.createServer(function (req, res) {
+        req.socket.setNoDelay(true);
         if (NO_CACHE || fileCache == undefined) {
             fs.readFile('index.html', function(err, file) {
             fileCache = file;
